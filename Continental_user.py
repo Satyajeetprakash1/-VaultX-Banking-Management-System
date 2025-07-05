@@ -50,7 +50,6 @@ def intro():
     login_register.mainloop()
 
 def login_page():
-    global image_f
     global ID
     global Pass
     global login_screen
@@ -92,13 +91,8 @@ def login_page():
                                                                                                            sticky=E)
 def login():
     global ID_info
-    global entry1
-    global entry2
     global account_list
     from User_functions import accounts as acnt
-    global login_screen
-    global volatile
-    global ID_info_initial
     ID_info = ID.get()
     ID_info_initial.append(ID_info)
     account_list = acnt.getno_of_acnts(ID_info)
@@ -134,7 +128,6 @@ def check_login():
     global Password
     global wrong_login
     from User_functions import accounts as acnt
-    global login_register
     global ID_info_initial
     ID_info = str(ID.get())
     Password = int(Pass.get())
@@ -161,7 +154,6 @@ def check_login():
 
 def account_selection(variable):
     global image_f
-    global login_register
     global screen1
 
     screen1 = Toplevel()
@@ -199,7 +191,6 @@ def account_selection(variable):
         Butt_back = Button(screen1, text="BACK", command=lambda: back(screen1), highlightbackground="#B4B4B4").grid(row=5, column=0,
                                                                                                    sticky=E)
 def credit_page_form():
-    global image_f
     global incomeamt
     global business_address
     global ssno
@@ -253,7 +244,6 @@ def credit_page_form():
 
 
 def register_page():
-    global image_f
     global f_name
     global l_name
     global bday
@@ -365,7 +355,6 @@ def register(screen):
 def accounts():
     from User_functions import accounts as acnt
     global account_screen
-    global ID_info
     account_screen = Tk()
     account_screen.title("The Continental")
     account_screen.iconbitmap("Icon.ico")
@@ -455,22 +444,6 @@ def get_account(ac_no):
         menu.mainloop()
 
 def back(screen, value="back"):
-    global credit_screen
-    global register_screen
-    global login_register
-    global screen1
-    global login_screen
-    global menu
-    global deposit_withdraw_transfer_page
-    global statement_screen
-    global card_type_screen
-    global cust_care_screen
-    global account_IDno
-    global ID_info
-    global captcha_screen
-    global card_page
-    global company_screen
-    global card_typo
 
     if screen == credit_screen or screen == register_screen:
         warning = messagebox.askquestion("Confirm Form Resubmission!",
@@ -540,7 +513,6 @@ def deposit_withdraw_transfer(mode="withdraw"):
     global entry_d
     global receiver_ac
     global entry_receiver
-    global accntid
     from User_functions.card_function import cardlog as cl
 
     if cl.has_card(accntid):
@@ -606,7 +578,6 @@ def deposit_withdraw_transfer(mode="withdraw"):
             pass
 
 def amount_page(mode):
-    global image_f
     global entry_amt
     global amount_screen
     global amt_value
@@ -667,12 +638,6 @@ def insert(value):
     entry_amt.insert(0, string + value)
 
 def withdraw_or_deposit_value(mode):
-    global c_no
-    global expiry
-    global c_vv
-    global typo
-    global amt_value
-    global receiver_ac
     from User_functions.card_function import cardlog as cl
 
     card_number = int(c_no.get())  # int
@@ -712,19 +677,7 @@ def withdraw_or_deposit_value(mode):
             # amount_page(mode)
 
 def check_card(mode="withdraw"):
-    global c_no
-    global expiry
-    global c_vv
-    global typo
-    global entry_a
-    global entry_b
-    global entry_c
-    global typo
-    global receiver_ac
-    global entry_receiver
     from User_functions.card_function import cardlog as cl
-    global menu
-    global card_number_initial
 
     receiver_ac_id = 0
     if mode == "transfer":
@@ -789,7 +742,6 @@ def confirm_card(card_number, expiry_date, cvv, card_type,reciever_ac_id=0):
 def statement_page(ac_no):
     from User_functions import transaction as txn
     from User_functions.card_function import cardlog as cl
-    global image_f
     global statement_screen
 
     lst = [["Transaction ID", "Date", "Time", "Action"]]
@@ -838,7 +790,6 @@ def statement_page(ac_no):
 
 def otp_page(amount, card_number, receiver_ac_id, mode):
     global otp_screen
-    global image_f
     from User_functions import accounts as acnt
 
     otp = mail.otp_mail(acnt.get_email(card_number))
@@ -900,7 +851,6 @@ def balance_page(accntid):
             pass
 
 def cust_care_page():
-    global image_f
     global cust_care_screen
 
     cust_care_screen = Toplevel()
@@ -947,7 +897,6 @@ def cust_care_page():
 
 
 def process_request(cust_id, request, request_type):
-    global cust_care_screen
     from admin_functions import request_admin as r
     print(cust_id, request, request_type)
     ##SAVE YOUR REQUEST FROM HERE
@@ -958,8 +907,6 @@ def process_request(cust_id, request, request_type):
         cust_care_screen.destroy()
 
 def card_type_page(ac_no):
-    global image_f
-    global menu
     global card_type_screen
     global account_IDno
 
@@ -994,10 +941,6 @@ def card_type_page(ac_no):
                                                                                                                  sticky=E)
 def check_eligible(screen):
     import User_functions.signup as sg
-    global incomeamt
-    global business_address
-    global ssno
-    global profitpa
 
     ##YOUR VALUES TO ADD IN DATABSE AND CHECK ELIGILITY, YOUR WORK HERE
 
@@ -1028,7 +971,6 @@ def check_eligible(screen):
 def next_page(screen, card_type="CREDIT"):
     if screen == screen1:
         global actype  ##THE VARIABLE FOR YOUR ACCOUNT TYPE USE THIS TO ADD TO SQL
-        global choice
         actype = choice.get()
         if actype == "SAVINGS" or actype == "DEBIT":
             screen.destroy()
@@ -1051,7 +993,6 @@ def next_page(screen, card_type="CREDIT"):
             card_company(card_type)
 
 def credit_card_application_form(card_type):
-    global image_f
     global card_page
     global fn
     global ln
@@ -1127,8 +1068,6 @@ def card_company_switch(card_type):
     card_company(card_type)
 
 def card_company(card_type):
-    global image_f
-    global menu
     global company_screen
     global card_typo
 
@@ -1163,7 +1102,6 @@ def card_company(card_type):
 def store_cardtype(card, card_type):
     global type_card
     global visa_master
-    global company_screen
     type_card = card_type  ##VARIABLE FOR CARD TYPE TAKEN
 
     visa_master = card  ##VARIABLE FOR EITHER CREDIT OR DEBIT CARD
@@ -1173,7 +1111,6 @@ def store_cardtype(card, card_type):
     captcha_page("card_application",visa_master,type_card)
 
 def captcha_page(form,visa_master,type_card,screen = 'NA'):
-    global image_f
     global captcha_screen
     global image_cp
     global image_refresh
@@ -1215,7 +1152,6 @@ def captcha_page(form,visa_master,type_card,screen = 'NA'):
     print(captcha_code)
 
 def refresh_captcha(form,visa_master,type_card,screen = 'NA'):
-    global captcha_screen
     captcha_screen.destroy()
     captcha_page(form,visa_master,type_card,screen)
 
@@ -1228,23 +1164,6 @@ def check_captcha(form, gen_code, entry_code,visa_master,type_card,screen = 'NA'
     if gen_code == entry_code:
         if form == "register":
             global variable
-            global choice
-            global incomeamt
-            global business_address
-            global ssno
-            global profitpa
-            global f_name
-            global l_name
-            global bday
-            global mailID
-            global password
-            global sex
-            global number
-            global ad
-            global cityID
-            global stateID
-            global aadharID
-            global pincode
             global ID_info
             global Password
             # global lis
@@ -1312,14 +1231,6 @@ def check_captcha(form, gen_code, entry_code,visa_master,type_card,screen = 'NA'
                 if success == "ok":
                     captcha_screen.destroy()
             else:
-                global card_page
-                global fn
-                global ln
-                global dob_wife
-                global phone_wife
-                global aadhar_wife
-                global occupation
-                global income_wife
                 from User_functions import accounts as acnt
 
                 try:
