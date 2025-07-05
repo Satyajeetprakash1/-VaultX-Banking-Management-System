@@ -22,6 +22,7 @@ card_number_initial = []
 
 def intro():
     global image_f
+    image_f = PhotoImage(file="img.png")
     global login_register
     login_register = Tk()
     login_register.title("The Continental")
