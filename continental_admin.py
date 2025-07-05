@@ -7,6 +7,7 @@ from tkinter import ttk
 
 def admin_login():
     global image_f
+    image_f = PhotoImage(file="img.png")
     global login_page
     login_page = Tk()
     login_page.title("The Continental")
